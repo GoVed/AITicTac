@@ -36,7 +36,7 @@ class Game:
         if self.turn:
             if  self.isX[x][y] or  self.isO[x][y]:
                 return "Tile already selected"
-            self.isX[x][y] = True
+            self.isX[x][y] = True            
             return "Tile selected"
         return "Not your turn"
         
