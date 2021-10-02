@@ -20,11 +20,17 @@ class LogMoves:
         self.features.append([isX,isO])
         self.labels.append(select)
     
-    def save(self,path="",name=""):
+    def save(self,name=""):
         npF = np.array(self.features)
         npL = np.array(self.labels)
-        np.save(npF,path+name+"_features.npy")
-        np.save(npL,path+name+"_labels.npy")
+        
+        np.save(name+"_features.npy",npF)
+        np.save(name+"_labels.npy",npL)
+        
+        n = len(self.features)
+        
         self.features = []
         self.labels = []
+        
+        return n,name+"_features.npy",name+"_labels.npy"
         

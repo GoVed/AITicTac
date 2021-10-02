@@ -89,7 +89,13 @@ class Game:
         rand = random.randint(0,len(empty)-1)
         self.select(empty[rand][0],empty[rand][1])
         return empty[rand][0],empty[rand][1]
-        
+    
+    def playPriority(self,priority):
+        for i in range(9):            
+            if self.select(priority[0,i], priority[1,i])=='o':
+                return priority[0,i], priority[1,i]
+        return -1,-1
+            
         
         
     

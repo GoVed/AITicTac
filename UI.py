@@ -18,6 +18,7 @@ class UI:
     saveBtn = None
     retryBtn = None
     status = None
+    saveName = None
     
     #Constructor
     def __init__(self,w=500,h=500,bg="black"):
@@ -33,23 +34,27 @@ class UI:
         #Setting up the canvas
         self.canvas = tk.Canvas(self.win,bg=bg,width = self.w,height = self.h)
         self.canvas.bind("<Button-1>", self.canvasClick)
-        self.canvas.grid(row = 0, column = 0,columnspan = 2)
+        self.canvas.grid(row = 0, column = 0,columnspan = 4)
         
         #Setting the status text
         self.status = tk.Label(self.win,text="Select the mode to play/train")
-        self.status.grid(row = 1, column = 0,columnspan = 2)
+        self.status.grid(row = 1, column = 0,columnspan = 4)
         
         #Setting up the buttons
         self.trainBtn = tk.Button(self.win,text = "Train model",command=self.trainBtnClicked)
-        self.easyBtn = tk.Button(self.win,text = "Play easy")
-        self.hardBtn = tk.Button(self.win,text = "Play hard")
+        self.easyBtn = tk.Button(self.win,text = "Play easy",command = self.easyAIBtnClicked)
+        self.hardBtn = tk.Button(self.win,text = "Play hard",command = self.hardAIBtnClicked)
         self.retryBtn = tk.Button(self.win,text = "Retry",command = self.retryBtnClicked)
         self.saveBtn = tk.Button(self.win,text = "Save Log",command = self.saveBtnClicked)
-        self.trainBtn.grid(row = 2, column = 0,columnspan = 2)
-        self.easyBtn.grid(row = 3, column = 0)
-        self.hardBtn.grid(row = 3, column = 1)
-        self.retryBtn.grid(row = 4, column = 0)
-        self.saveBtn.grid(row = 4, column = 1)
+        self.trainBtn.grid(row = 2, column = 0,columnspan = 4)
+        self.easyBtn.grid(row = 3, column = 0,columnspan = 2)
+        self.hardBtn.grid(row = 3, column = 2,columnspan = 2)
+        self.retryBtn.grid(row = 4, column = 0,columnspan = 2)
+        self.saveBtn.grid(row = 4, column = 3)
+        
+        #Setting up save text
+        self.saveName = tk.Text(self.win,height=1,width=20)
+        self.saveName.grid(row = 4, column = 2)
         self.reset()
         
     def reset(self):
@@ -87,6 +92,10 @@ class UI:
         self.retryClicked()
     def saveBtnClicked(self):
         self.saveClicked()
+    def easyAIBtnClicked(self):
+        self.easyAIClicked()
+    def hardAIBtnClicked(self):
+        self.hardAIClicked()
         
     #To be re defined in the Run file
     @staticmethod 
@@ -100,6 +109,12 @@ class UI:
         pass
     @staticmethod 
     def saveClicked():
+        pass
+    @staticmethod 
+    def easyAIClicked():
+        pass
+    @staticmethod 
+    def hardAIClicked():
         pass
     
     
