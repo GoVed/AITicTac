@@ -8,9 +8,15 @@ import Game
 import UI
 
 ui = UI.UI()
+game = Game.Game()
 ui.createGrid()
-ui.drawXO(0, 0, "X")
-ui.drawXO(1, 0, "X")
-ui.drawXO(0, 2, "O")
-ui.drawXO(2, 2, "X")
+
+def tileClicked(x,y):
+    res = game.select(x, y)
+    ui.setStatus(res)
+    if res=="Tile selected":
+        ui.drawXO(x, y, "X")
+    
+ui.tileClicked = tileClicked
+
 ui.mainloop()

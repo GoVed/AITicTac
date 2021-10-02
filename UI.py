@@ -30,6 +30,7 @@ class UI:
         
         #Setting up the canvas
         self.canvas = tk.Canvas(self.win,bg=bg,width = self.w,height = self.h)
+        self.canvas.bind("<Button-1>", self.canvasClick)
         self.canvas.pack()
         
         #Setting the status text
@@ -57,8 +58,21 @@ class UI:
         y*=self.h/3
         x+=self.w/6
         y+=self.h/6        
-        self.canvas.create_text(x,y,fill="white",font = "Times 40  bold",text = sym )        
+        self.canvas.create_text(x,y,fill="white",font = "Times 40  bold",text = sym )
+    
+    #Handles canvas clicks
+    def canvasClick(self,event):
+        self.status.config(text="Clicked at "+str(int(event.x/self.w*3)) +","+ str(int(event.y/self.h*3)))
+        self.tileClicked(int(event.x/self.w*3), int(event.y/self.h*3))
         
+       
+    def setStatus(self,txt):
+        self.status.config(text=txt)
+        
+    #To be overriden in Run file
+    def tileClicked(x,y):
+        pass
+    
     #Run the mainloop
     def mainloop(self):
         self.win.mainloop()
