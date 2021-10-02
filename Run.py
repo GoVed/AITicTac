@@ -22,7 +22,7 @@ def tileClicked(x,y):
     res = game.select(x, y)
     ui.setStatus(res)
     if res=="Tile selected":
-        ui.drawXO(x, y, "X")
+        ui.drawXO(y, x, "X")
         logger.log(game.isX, game.isO, x, y)
     
 ui.tileClicked = tileClicked

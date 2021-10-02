@@ -22,7 +22,7 @@ class UI:
         #Setting up the window
         self.win = tk.Tk()
         self.win.title('AI Tic Tac Toe')
-        self.win.geometry('700x650')
+        
         
         #Setting the width and the height of the canvas
         self.w = w
@@ -31,19 +31,19 @@ class UI:
         #Setting up the canvas
         self.canvas = tk.Canvas(self.win,bg=bg,width = self.w,height = self.h)
         self.canvas.bind("<Button-1>", self.canvasClick)
-        self.canvas.pack()
+        self.canvas.grid(row = 0, column = 0,columnspan = 2)
         
         #Setting the status text
         self.status = tk.Label(self.win,text="Select the mode to play/train")
-        self.status.pack()
+        self.status.grid(row = 1, column = 0,columnspan = 2)
         
         #Setting up the buttons
         self.trainBtn = tk.Button(self.win,text = "Train model")
         self.easyBtn = tk.Button(self.win,text = "Play easy")
         self.hardBtn = tk.Button(self.win,text = "Play hard")
-        self.trainBtn.pack()
-        self.easyBtn.pack()
-        self.hardBtn.pack()
+        self.trainBtn.grid(row = 2, column = 0,columnspan = 2)
+        self.easyBtn.grid(row = 3, column = 0)
+        self.hardBtn.grid(row = 3, column = 1)
     
     #Create tic tac toe grid on the canvas (4 lines)
     def createGrid(self):
@@ -62,8 +62,8 @@ class UI:
     
     #Handles canvas clicks
     def canvasClick(self,event):
-        self.status.config(text="Clicked at "+str(int(event.x/self.w*3)) +","+ str(int(event.y/self.h*3)))
-        self.tileClicked(int(event.x/self.w*3), int(event.y/self.h*3))
+        self.status.config(text="Clicked at "+ str(int(event.y/self.h*3)) +","+str(int(event.x/self.w*3)))
+        self.tileClicked(int(event.y/self.h*3),int(event.x/self.w*3))
         
        
     def setStatus(self,txt):

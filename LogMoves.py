@@ -17,6 +17,8 @@ class LogMoves:
         select = [[False]*3 for _ in range(3)]
         select[newx][newy]=True        
         isX[newx][newy]=False
+        print(isX)
+        print('------')
         self.features.append([isX,isO])
         self.labels.append(select)
     
