@@ -15,6 +15,8 @@ class UI:
     trainBtn = None
     easyBtn = None
     hardBtn = None
+    saveBtn = None
+    retryBtn = None
     status = None
     
     #Constructor
@@ -41,9 +43,13 @@ class UI:
         self.trainBtn = tk.Button(self.win,text = "Train model")
         self.easyBtn = tk.Button(self.win,text = "Play easy")
         self.hardBtn = tk.Button(self.win,text = "Play hard")
+        self.retryBtn = tk.Button(self.win,text = "Retry")
+        self.saveBtn = tk.Button(self.win,text = "Save Log")
         self.trainBtn.grid(row = 2, column = 0,columnspan = 2)
         self.easyBtn.grid(row = 3, column = 0)
         self.hardBtn.grid(row = 3, column = 1)
+        self.retryBtn.grid(row = 4, column = 0)
+        self.saveBtn.grid(row = 4, column = 1)
     
     #Create tic tac toe grid on the canvas (4 lines)
     def createGrid(self):
