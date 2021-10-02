@@ -39,15 +39,18 @@ class Game:
     
     def select(self,x,y):
         if self.checkWin()=='-':
-            if self.turn:
-                if  self.isX[x][y] or  self.isO[x][y]:
-                    return "Tile already selected"
+            if  self.isX[x][y] or  self.isO[x][y]:
+                return "Tile already selected"
+            self.turn = not self.turn
+            if not self.turn:                
                 self.isX[x][y] = True            
-                return "Tile selected"
-            return "Not your turn"
+                return "x"
+            else:
+                self.isO[x][y] = True            
+                return "o"            
         return "Game over"
     
-    def checkWin(self):
+    def checkWin(self):        
         #Check horizontal and verticle
         for i in range(3):
             
@@ -70,7 +73,22 @@ class Game:
         if np.array_equal(np.fliplr(self.isO).diagonal(),np.full((3),True)):
             return 'x'
         
+        #Check all filled / draw match
+        if np.array_equal(np.bitwise_or(self.isX,self.isO),np.full((3,3),True)):
+            return 'd'
+        
         return '-'
+    
+    def playRandom(self):
+        empty = []
+        for i in range(3):
+            for j in range(3):
+                if not self.isX[i,j] and not self.isO[i,j]:
+                    empty.append([i,j])
+                    
+        rand = random.randint(0,len(empty)-1)
+        self.select(empty[rand][0],empty[rand][1])
+        return empty[rand][0],empty[rand][1]
         
         
         

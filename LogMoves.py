@@ -16,9 +16,7 @@ class LogMoves:
         isO=copy.deepcopy(isO)
         select = [[False]*3 for _ in range(3)]
         select[newx][newy]=True        
-        isX[newx][newy]=False
-        print(isX)
-        print('------')
+        isX[newx][newy]=False        
         self.features.append([isX,isO])
         self.labels.append(select)
     
@@ -27,4 +25,6 @@ class LogMoves:
         npL = np.array(self.labels)
         np.save(npF,path+name+"_features.npy")
         np.save(npL,path+name+"_labels.npy")
+        self.features = []
+        self.labels = []
         

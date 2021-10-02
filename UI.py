@@ -40,16 +40,21 @@ class UI:
         self.status.grid(row = 1, column = 0,columnspan = 2)
         
         #Setting up the buttons
-        self.trainBtn = tk.Button(self.win,text = "Train model")
+        self.trainBtn = tk.Button(self.win,text = "Train model",command=self.trainBtnClicked)
         self.easyBtn = tk.Button(self.win,text = "Play easy")
         self.hardBtn = tk.Button(self.win,text = "Play hard")
-        self.retryBtn = tk.Button(self.win,text = "Retry")
-        self.saveBtn = tk.Button(self.win,text = "Save Log")
+        self.retryBtn = tk.Button(self.win,text = "Retry",command = self.retryBtnClicked)
+        self.saveBtn = tk.Button(self.win,text = "Save Log",command = self.saveBtnClicked)
         self.trainBtn.grid(row = 2, column = 0,columnspan = 2)
         self.easyBtn.grid(row = 3, column = 0)
         self.hardBtn.grid(row = 3, column = 1)
         self.retryBtn.grid(row = 4, column = 0)
         self.saveBtn.grid(row = 4, column = 1)
+        self.reset()
+        
+    def reset(self):
+        self.canvas.delete('all')
+        self.createGrid()
     
     #Create tic tac toe grid on the canvas (4 lines)
     def createGrid(self):
@@ -71,13 +76,32 @@ class UI:
         self.status.config(text="Clicked at "+ str(int(event.y/self.h*3)) +","+str(int(event.x/self.w*3)))
         self.tileClicked(int(event.y/self.h*3),int(event.x/self.w*3))
         
-       
+    #set status text
     def setStatus(self,txt):
         self.status.config(text=txt)
         
-    #To be overriden in Run file
+    #Buttons click
+    def trainBtnClicked(self):
+        self.trainClicked()
+    def retryBtnClicked(self):
+        self.retryClicked()
+    def saveBtnClicked(self):
+        self.saveClicked()
+        
+    #To be re defined in the Run file
+    @staticmethod 
     def tileClicked(x,y):
         pass
+    @staticmethod 
+    def trainClicked():
+        pass
+    @staticmethod 
+    def retryClicked():
+        pass
+    @staticmethod 
+    def saveClicked():
+        pass
+    
     
     #Run the mainloop
     def mainloop(self):
